@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterCustomController;
 use App\Http\Controllers\UserCustomController;
+use App\Http\Controllers\GalleryController;
+
 
 // use App\Http\Controllers\UserController;
 
@@ -40,3 +42,7 @@ Route::get('/user2/{user}/edit2', [UserCustomController::class, 'edit2'])->name(
 Route::patch('/user2/{user}', [UserCustomController::class, 'update2'])->name('update2');
 Route::get('/user2/{user}/resize2', [UserCustomController::class, 'resizeForm'])->name('resizeForm');
 Route::post('/user2/{user}/resize2', [UserCustomController::class, 'resizeImage'])->name('resizeImage');
+
+Route::resource('gallery', GalleryController::class);
+
+
