@@ -5,6 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
+/**
+ * @OA\Get(
+ *     path="/api/gallery",
+ *     tags={"gallery"},
+ *     summary="Get a list of gallery items",
+ *     description="Returns a list of gallery items.",
+ *     operationId="getGallery",
+ *     @OA\Response(
+ *         response=200,
+ *         description="Successful operation"
+ *     )
+ * )
+ */
 class GalleryController extends Controller
 {
     /**
@@ -22,6 +35,14 @@ class GalleryController extends Controller
             )->whereNotNull('picture')->orderBy('created_at', 'desc')->paginate(30)
         );
         return view('gallery.index')->with($data);
+
+    }
+
+    public function home()
+    {
+        $response = Http::get('https://reqres.in/api/users?page=2');
+        $data = $response->object()->data;
+        return view('front.home.pages.home', compact('data'));
     }
 
     /**

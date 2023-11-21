@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\GreetController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\GalleryApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/info', [InfoController::class, 'index'])->name('info');
-
 Route::get('/greet', [GreetController::class, 'greet'])->name('greet');
+// Route::get('/gallery', [GalleryController::class, 'home'])->name('gallery');
+Route::get('/getgalleryapi', [GalleryApiController::class, 'getgalleryapi'])->name('GetGalleryApi');
+Route::get('/gallery', [GalleryApiController::class, 'index'])->name('Gallery');
+Route::get('/creategallery', [GalleryApiController::class, 'create'])->name('CreateGallery');
+Route::post('/postgallery', [GalleryApiController::class, 'storeGallery'])->name('StoreGallery');
